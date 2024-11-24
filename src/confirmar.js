@@ -2,9 +2,9 @@ async function fetchOfferDetails(offerId) {
     const SPREADSHEET_ID = '1FXFHScHON1oaR2OsBo-cbxpZMfoxx9tt2S0YJuVibrE';
     
     try {
-        // Usar URL relativa al protocolo (funciona con http y https)
+        // Usar HTTPS explícitamente
         const response = await fetch(
-            `//docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv`
+            `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/export?format=csv`
         );
 
         console.log('Response:', response); // Para debugging
