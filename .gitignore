@@ -5,3 +5,4 @@ dist/
 .env
 src/loytra-7e3993a96eb8.json
 loytra-7e3993a96eb8.json
+*.json.backup
