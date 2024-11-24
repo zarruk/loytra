@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loytra - Solicitud de Transporte</title>
+  <script type="module" crossorigin src="/assets/index-DWGLpfpo.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-Dhfif7Vp.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://loytra.co/img/logop.png" alt="Loytra Logo" class="logo">
+        </header>
+        
+        <main>
+            <form id="transportForm" class="form-container">
+                <div class="form-group">
+                    <label for="offerId">ID de oferta</label>
+                    <input type="text" id="offerId" name="offerId" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="client">Cliente</label>
+                    <input type="text" id="client" name="client" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="totalWeight">Peso total (toneladas)</label>
+                    <input type="number" id="totalWeight" name="totalWeight" min="0" step="0.01" required 
+                           placeholder="Ej: 24.5">
+                </div>
+
+                <div class="form-group">
+                    <label for="vehicleType">Tipo de vehículo</label>
+                    <select id="vehicleType" name="vehicleType" required>
+                        <option value="">Seleccione un tipo de vehículo</option>
+                        <option value="tractomula">Tractomula</option>
+                        <option value="mula">Mula</option>
+                        <option value="dobletroque">Dobletroque</option>
+                        <option value="sencillo">Camión Sencillo</option>
+                        <option value="turbo">Turbo</option>
+                        <option value="furgon">Furgón</option>
+                        <option value="minimula">Mini Mula</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="origin">Origen</label>
+                    <select id="origin" name="origin" required>
+                        <option value="Buenaventura" selected>Buenaventura</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Cali">Cali</option>
+                        <option value="Barranquilla">Barranquilla</option>
+                        <option value="Cartagena">Cartagena</option>
+                        <option value="Santa Marta">Santa Marta</option>
+                        <option value="Pereira">Pereira</option>
+                        <option value="Manizales">Manizales</option>
+                        <option value="Ibagué">Ibagué</option>
+                        <option value="Villavicencio">Villavicencio</option>
+                        <option value="Pasto">Pasto</option>
+                        <option value="Cúcuta">Cúcuta</option>
+                        <option value="otra">Otra ciudad...</option>
+                    </select>
+                    <input type="text" 
+                           id="originCustom" 
+                           name="originCustom" 
+                           placeholder="Ingrese la ciudad"
+                           style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="destination">Destino</label>
+                    <select id="destination" name="destination" required>
+                        <option value="Cali" selected>Cali</option>
+                        <option value="Buenaventura">Buenaventura</option>
+                        <option value="Bogotá">Bogotá</option>
+                        <option value="Medellín">Medellín</option>
+                        <option value="Barranquilla">Barranquilla</option>
+                        <option value="Cartagena">Cartagena</option>
+                        <option value="Santa Marta">Santa Marta</option>
+                        <option value="Pereira">Pereira</option>
+                        <option value="Manizales">Manizales</option>
+                        <option value="Ibagué">Ibagué</option>
+                        <option value="Villavicencio">Villavicencio</option>
+                        <option value="Pasto">Pasto</option>
+                        <option value="Cúcuta">Cúcuta</option>
+                        <option value="otra">Otra ciudad...</option>
+                    </select>
+                    <input type="text" 
+                           id="destinationCustom" 
+                           name="destinationCustom" 
+                           placeholder="Ingrese la ciudad"
+                           style="display: none;">
+                </div>
+
+                <div class="form-group">
+                    <label for="cargo">Mercancía/flete</label>
+                    <textarea id="cargo" name="cargo" required></textarea>
+                </div>
+
+                <button type="submit">Solicitar Oferta</button>
+            </form>
+        </main>
+    </div>
+</body>
+</html> 

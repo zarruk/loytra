@@ -90,4 +90,47 @@ button:hover {
     .form-container {
         padding: 1rem;
     }
+}
+
+.error-message {
+    color: #dc3545;
+    padding: 1rem;
+    margin: 1rem 0;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.primary-button {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.secondary-button {
+    background-color: #6c757d;
+    color: white;
+}
+
+#offerDetails ul {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+}
+
+#offerDetails li {
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+#offerDetails span {
+    font-weight: bold;
+    color: var(--primary-color);
 } 

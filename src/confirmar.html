@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loytra - Confirmar Oferta</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://loytra.co/img/logop.png" alt="Loytra Logo" class="logo">
+        </header>
+        
+        <main>
+            <div id="offerDetails" class="form-container">
+                <h2>Confirmación de Oferta</h2>
+                <div id="loadingMessage">Cargando detalles de la oferta...</div>
+                <div id="errorMessage" style="display: none;" class="error-message"></div>
+                <div id="offerContent" style="display: none;">
+                    <p>¿Aceptas la oferta <span id="offerId"></span> con los siguientes detalles?</p>
+                    <ul>
+                        <li>Origen: <span id="origin"></span></li>
+                        <li>Destino: <span id="destination"></span></li>
+                        <li>Mercancía: <span id="cargo"></span></li>
+                        <li>Tipo de vehículo: <span id="vehicleType"></span></li>
+                        <li>Peso: <span id="weight"></span> toneladas</li>
+                        <li>Cliente: <span id="client"></span></li>
+                    </ul>
+                    <div class="button-group">
+                        <button id="acceptButton" class="primary-button">Aceptar Oferta</button>
+                        <button id="rejectButton" class="secondary-button">Rechazar</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script type="module" src="./confirmar.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</body>
+</html> 
