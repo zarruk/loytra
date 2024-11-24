@@ -1,6 +1,5 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
-import fs from 'fs';
 
 export default defineConfig({
   server: {
@@ -10,7 +9,13 @@ export default defineConfig({
   },
   root: 'src',
   build: {
-    outDir: '../dist'
+    outDir: '../dist',
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'src/index.html'),
+        confirmar: resolve(__dirname, 'src/confirmar.html')
+      }
+    }
   },
   resolve: {
     alias: {
