@@ -10,7 +10,7 @@ async function readRawBody(req) {
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
-      return res.status(200).json({ ok: true, message: 'Webhook listo. Usa POST para enviar eventos.' });
+      return res.status(200).json({ ok: true, message: 'Webhook listo. Usa POST para enviar eventos.', version: 'vercel-webhook-v2' });
     }
 
     if (req.method !== 'POST') {
@@ -49,6 +49,12 @@ export default async function handler(req, res) {
           uuid: offerId,
           offerId,
           url: `${baseUrl}/oferta.html?id=${encodeURIComponent(offerId)}`
+        },
+        meta: {
+          baseUrl,
+          host,
+          protocol,
+          receivedContentType: contentType || null
         }
       }
     ];
