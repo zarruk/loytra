@@ -15,8 +15,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "@esbuild/darwin-arm64": "^0.24.2"
-  }
+  "description": ""
 }
