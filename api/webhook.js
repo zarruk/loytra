@@ -1,3 +1,4 @@
+import { randomUUID as nodeRandomUUID } from 'crypto';
 async function readRawBody(req) {
   const chunks = [];
   for await (const chunk of req) {
@@ -29,7 +30,23 @@ export default async function handler(req, res) {
     }
 
     console.log('Webhook payload:', payload);
-    return res.status(200).json({ ok: true });
+
+    const uuid = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
+      ? globalThis.crypto.randomUUID()
+      : nodeRandomUUID();
+
+    const responseBody = [
+      {
+        success: true,
+        message: 'Datos recibidos y guardados correctamente',
+        data: {
+          uuid,
+          url: `https://oferta-webhook.onrender.com/ofertas/${uuid}`
+        }
+      }
+    ];
+
+    return res.status(200).json(responseBody);
   } catch (error) {
     console.error('Webhook error:', error);
     return res.status(500).json({ error: 'Internal Server Error' });
