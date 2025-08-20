@@ -31,17 +31,24 @@ export default async function handler(req, res) {
 
     console.log('Webhook payload:', payload);
 
-    const uuid = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
+    const generatedId = (globalThis.crypto && typeof globalThis.crypto.randomUUID === 'function')
       ? globalThis.crypto.randomUUID()
       : nodeRandomUUID();
+
+    const host = req.headers['x-forwarded-host'] || req.headers.host || 'loytra.vercel.app';
+    const protocol = (req.headers['x-forwarded-proto'] || 'https').split(',')[0];
+    const baseUrl = `${protocol}://${host}`;
+
+    const offerId = payload.offerId || payload.id || generatedId;
 
     const responseBody = [
       {
         success: true,
         message: 'Datos recibidos y guardados correctamente',
         data: {
-          uuid,
-          url: `https://oferta-webhook.onrender.com/ofertas/${uuid}`
+          uuid: offerId,
+          offerId,
+          url: `${baseUrl}/oferta.html?id=${encodeURIComponent(offerId)}`
         }
       }
     ];
