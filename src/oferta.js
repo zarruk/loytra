@@ -48,6 +48,7 @@ async function fetchOfferDetails(offerId) {
             placaVehiculo: getColumnValue('placa_vehiculo'),
             claseVehiculo: getColumnValue('clase_vehiculo'),
             carroceria: getColumnValue('carroceria'),
+            valorRemesa: getColumnValue('valor_remesa'),
             nombre: getColumnValue('nombre'),
             apellidos: getColumnValue('apellidos'),
             telefono: getColumnValue('telefono'),
@@ -79,6 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('placaVehiculo').textContent = offerDetails.placaVehiculo;
         document.getElementById('claseVehiculo').textContent = offerDetails.claseVehiculo;
         document.getElementById('carroceria').textContent = offerDetails.carroceria;
+        document.getElementById('valorRemesa').textContent = offerDetails.valorRemesa;
         document.getElementById('nombre').textContent = offerDetails.nombre;
         document.getElementById('apellidos').textContent = offerDetails.apellidos;
         document.getElementById('telefono').textContent = offerDetails.telefono;
