@@ -43,9 +43,12 @@ async function fetchOfferDetails(offerId) {
             origin: getColumnValue('origen'),
             destination: getColumnValue('destino'),
             cargo: getColumnValue('mercancia'),
-            weight: getColumnValue('peso'),
             vehicleType: getColumnValue('tipo_de_vehiculo'),
-            client: getColumnValue('cliente')
+            client: getColumnValue('cliente'),
+            nombre: getColumnValue('nombre'),
+            apellidos: getColumnValue('apellidos'),
+            telefono: getColumnValue('telefono'),
+            cc: getColumnValue('cc')
         };
     } catch (error) {
         throw new Error('Error al obtener los detalles de la oferta: ' + error.message);
@@ -65,13 +68,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     try {
         const offerDetails = await fetchOfferDetails(offerId);
-        document.getElementById('offerId').textContent = offerId;
         document.getElementById('origin').textContent = offerDetails.origin;
         document.getElementById('destination').textContent = offerDetails.destination;
         document.getElementById('cargo').textContent = offerDetails.cargo;
         document.getElementById('vehicleType').textContent = offerDetails.vehicleType;
-        document.getElementById('weight').textContent = offerDetails.weight;
         document.getElementById('client').textContent = offerDetails.client;
+        document.getElementById('nombre').textContent = offerDetails.nombre;
+        document.getElementById('apellidos').textContent = offerDetails.apellidos;
+        document.getElementById('telefono').textContent = offerDetails.telefono;
+        document.getElementById('cc').textContent = offerDetails.cc;
         document.getElementById('loadingMessage').style.display = 'none';
         document.getElementById('offerContent').style.display = 'block';
     } catch (error) {

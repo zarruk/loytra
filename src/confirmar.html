@@ -17,15 +17,25 @@
                 <div id="loadingMessage">Cargando detalles de la oferta...</div>
                 <div id="errorMessage" style="display: none;" class="error-message"></div>
                 <div id="offerContent" style="display: none;">
-                    <p>¿Aceptas la oferta <span id="offerId"></span> con los siguientes detalles?</p>
+                    <p>¿Aceptas la oferta con los siguientes detalles?</p>
+                    
+                    <h3>Detalles del Transporte</h3>
                     <ul>
                         <li>Origen: <span id="origin"></span></li>
                         <li>Destino: <span id="destination"></span></li>
                         <li>Mercancía: <span id="cargo"></span></li>
                         <li>Tipo de vehículo: <span id="vehicleType"></span></li>
-                        <li>Peso: <span id="weight"></span> toneladas</li>
                         <li>Cliente: <span id="client"></span></li>
                     </ul>
+                    
+                    <h3>Datos del Cliente</h3>
+                    <ul>
+                        <li>Nombre: <span id="nombre"></span></li>
+                        <li>Apellidos: <span id="apellidos"></span></li>
+                        <li>Teléfono: <span id="telefono"></span></li>
+                        <li>Cédula: <span id="cc"></span></li>
+                    </ul>
+                    
                     <div class="button-group">
                         <button id="acceptButton" class="primary-button">Aceptar Oferta</button>
                         <button id="rejectButton" class="secondary-button">Rechazar</button>
