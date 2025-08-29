@@ -1,5 +1,5 @@
 async function fetchOfferDetails(offerId) {
-    const SPREADSHEET_ID = '1FXFHScHON1oaR2OsBo-cbxpZMfoxx9tt2S0YJuVibrE';
+    const SPREADSHEET_ID = '1hE0HrjgxvCuCl2g_m_OVpDo-HucANW4ph6HV0W4yFfs';
     
     try {
         // Usar HTTPS explícitamente
