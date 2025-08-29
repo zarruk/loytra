@@ -45,15 +45,20 @@ async function fetchOfferDetails(offerId) {
             throw new Error('Oferta no encontrada');
         }
 
-        // Mapear los datos según las columnas
+        // Mapear los datos según las columnas por nombre
+        const getColumnValue = (columnName) => {
+            const index = headers.findIndex(header => header.trim().toLowerCase() === columnName.toLowerCase());
+            return index !== -1 ? offerRow[index] : 'No disponible';
+        };
+
         return {
-            offerId: offerRow[idOfertaIndex],
-            origin: offerRow[1],
-            destination: offerRow[2],
-            cargo: offerRow[3],
-            weight: offerRow[4],
-            vehicleType: offerRow[5],
-            client: offerRow[6]
+            offerId: getColumnValue('id_oferta'),
+            origin: getColumnValue('origen'),
+            destination: getColumnValue('destino'),
+            cargo: getColumnValue('mercancia'),
+            weight: getColumnValue('peso'),
+            vehicleType: getColumnValue('tipo_de_vehiculo'),
+            client: getColumnValue('cliente')
         };
 
     } catch (error) {
