@@ -6,11 +6,35 @@ async function fetchOfferDetails(offerId) {
         );
         if (!response.ok) throw new Error('Error al obtener datos de Google Sheets');
         const text = await response.text();
-        const rows = text.split('\n').map(row => row.split(',').map(cell => cell.replace(/^"|"$/g, '')));
-        const offerRow = rows.slice(1).find(row => row[0] === offerId);
-        if (!offerRow) throw new Error('Oferta no encontrada');
+        // Convertir CSV a array
+        const rows = text.split('\n').map(row => 
+            row.split(',').map(cell => 
+                cell.replace(/^"|"$/g, '') // Remover comillas
+            )
+        );
+
+        // La primera fila son los encabezados
+        const headers = rows[0];
+        console.log('Encabezados encontrados:', headers); // Para debugging
+
+        // Buscar el índice de la columna "id_oferta"
+        const idOfertaIndex = headers.findIndex(header => header.trim().toLowerCase() === 'id_oferta');
+        console.log('Índice de columna id_oferta:', idOfertaIndex); // Para debugging
+
+        if (idOfertaIndex === -1) {
+            throw new Error('Columna "id_oferta" no encontrada en la hoja de cálculo');
+        }
+
+        // Buscar en la columna id_oferta
+        const offerRow = rows.slice(1).find(row => row[idOfertaIndex] === offerId);
+
+        if (!offerRow) {
+            throw new Error('Oferta no encontrada');
+        }
+
+        // Mapear los datos según las columnas
         return {
-            offerId: offerRow[0],
+            offerId: offerRow[idOfertaIndex],
             origin: offerRow[1],
             destination: offerRow[2],
             cargo: offerRow[3],
