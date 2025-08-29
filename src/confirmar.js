@@ -70,7 +70,7 @@ async function fetchOfferDetails(offerId) {
     }
 }
 
-async function handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo) {
+async function handleAcceptOffer(offerId, offerDetails) {
     try {
         const response = await fetch('https://aztec.app.n8n.cloud/webhook/7003755d-eeb6-4463-9ffa-101b8f7629fa', {
             method: 'POST',
@@ -79,15 +79,7 @@ async function handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo)
             },
             body: JSON.stringify({
                 offerId,
-                driverPhone,
                 status: 'accepted',
-                driverInfo: {
-                    phone: driverPhone,
-                    name: driverInfo.name || 'No especificado',
-                    email: driverInfo.email || 'No especificado',
-                    vehiclePlate: driverInfo.vehiclePlate || 'No especificado',
-                    licenseNumber: driverInfo.licenseNumber || 'No especificado'
-                },
                 acceptanceInfo: {
                     acceptedAt: new Date().toISOString(),
                     userAgent: navigator.userAgent,
@@ -110,29 +102,25 @@ async function handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo)
 document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(window.location.search);
     const offerId = params.get('id');
-    const driverPhone = params.get('tel');
 
     console.log('Parámetros URL recibidos:', { 
         offerId, 
-        driverPhone,
         rawParams: window.location.search // Ver los parámetros completos
     });
 
-    if (!offerId || !driverPhone) {
-        console.log('Parámetros faltantes o inválidos:', { 
-            offerId: offerId || 'falta', 
-            driverPhone: driverPhone || 'falta'
+    if (!offerId) {
+        console.log('Parámetro faltante:', { 
+            offerId: offerId || 'falta'
         });
         document.getElementById('loadingMessage').style.display = 'none';
-        document.getElementById('errorMessage').textContent = 'Parámetros inválidos';
+        document.getElementById('errorMessage').textContent = 'Parámetro id es requerido';
         document.getElementById('errorMessage').style.display = 'block';
         return;
     }
 
     try {
         console.log('Iniciando búsqueda de oferta:', {
-            buscandoId: offerId,
-            telefonoRecibido: driverPhone
+            buscandoId: offerId
         });
         
         const offerDetails = await fetchOfferDetails(offerId);
@@ -156,26 +144,17 @@ document.addEventListener('DOMContentLoaded', async () => {
             try {
                 console.log('Intentando aceptar oferta:', {
                     offerId,
-                    driverPhone,
                     detallesCompletos: offerDetails
                 });
                 
-                const driverInfo = {
-                    name: params.get('name') || 'No especificado',
-                    email: params.get('email') || 'No especificado',
-                    vehiclePlate: params.get('plate') || 'No especificado',
-                    licenseNumber: params.get('license') || 'No especificado'
-                };
-                
-                await handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo);
+                await handleAcceptOffer(offerId, offerDetails);
                 console.log('Oferta aceptada exitosamente');
                 alert('Oferta aceptada correctamente');
                 window.close();
             } catch (error) {
                 console.error('Error en aceptación:', {
                     error,
-                    offerId,
-                    driverPhone
+                    offerId
                 });
                 alert('Error al aceptar la oferta: ' + error.message);
             }
@@ -190,8 +169,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.error('Error en proceso:', {
             error,
-            offerId,
-            driverPhone
+            offerId
         });
         document.getElementById('loadingMessage').style.display = 'none';
         document.getElementById('errorMessage').textContent = error.message;
