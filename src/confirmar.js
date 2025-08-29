@@ -52,7 +52,7 @@ async function fetchOfferDetails(offerId) {
 
 async function handleAcceptOffer(offerId, driverPhone, offerDetails) {
     try {
-        const response = await fetch('https://workflows.ops.sandbox.cuentamono.com/webhook/f3ff9ef5-218d-4c67-a1b1-04cc5c1a4674', {
+        const response = await fetch('https://aztec.app.n8n.cloud/webhook/7003755d-eeb6-4463-9ffa-101b8f7629fa', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
