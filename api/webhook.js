@@ -39,7 +39,7 @@ export default async function handler(req, res) {
     const protocol = (req.headers['x-forwarded-proto'] || 'https').split(',')[0];
     const baseUrl = `${protocol}://${host}`;
 
-    const offerId = payload.numeroPedido || payload.offerId || payload.id || generatedId;
+    const offerId = payload.id_oferta || payload.numeroPedido || payload.offerId || payload.id || generatedId;
 
     const responseBody = [
       {
