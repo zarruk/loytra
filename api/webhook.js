@@ -35,7 +35,7 @@ export default async function handler(req, res) {
       ? globalThis.crypto.randomUUID()
       : nodeRandomUUID();
 
-    const host = req.headers['x-forwarded-host'] || req.headers.host || 'loytra.vercel.app';
+    const host = 'loytra.vercel.app'; // Forzamos el host para que siempre sea loytra.vercel.app
     const protocol = (req.headers['x-forwarded-proto'] || 'https').split(',')[0];
     const baseUrl = `${protocol}://${host}`;
 
