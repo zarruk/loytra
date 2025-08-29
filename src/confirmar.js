@@ -50,7 +50,7 @@ async function fetchOfferDetails(offerId) {
     }
 }
 
-async function handleAcceptOffer(offerId, driverPhone, offerDetails) {
+async function handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo) {
     try {
         const response = await fetch('https://aztec.app.n8n.cloud/webhook/7003755d-eeb6-4463-9ffa-101b8f7629fa', {
             method: 'POST',
@@ -61,6 +61,18 @@ async function handleAcceptOffer(offerId, driverPhone, offerDetails) {
                 offerId,
                 driverPhone,
                 status: 'accepted',
+                driverInfo: {
+                    phone: driverPhone,
+                    name: driverInfo.name || 'No especificado',
+                    email: driverInfo.email || 'No especificado',
+                    vehiclePlate: driverInfo.vehiclePlate || 'No especificado',
+                    licenseNumber: driverInfo.licenseNumber || 'No especificado'
+                },
+                acceptanceInfo: {
+                    acceptedAt: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    ipAddress: 'No disponible en cliente'
+                },
                 ...offerDetails
             })
         });
@@ -126,7 +138,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                     detallesCompletos: offerDetails
                 });
                 
-                await handleAcceptOffer(offerId, driverPhone, offerDetails);
+                const driverInfo = {
+                    name: params.get('name') || 'No especificado',
+                    email: params.get('email') || 'No especificado',
+                    vehiclePlate: params.get('plate') || 'No especificado',
+                    licenseNumber: params.get('license') || 'No especificado'
+                };
+                
+                await handleAcceptOffer(offerId, driverPhone, offerDetails, driverInfo);
                 console.log('Oferta aceptada exitosamente');
                 alert('Oferta aceptada correctamente');
                 window.close();
